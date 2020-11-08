@@ -26,6 +26,7 @@ export class ImageListComponent implements OnInit {
     if (this.images.length==0){
       console.log('No results found')
     }
+    document.getElementById("target").scrollIntoView();
   }
 
   handleError(error){
@@ -48,7 +49,21 @@ export class ImageListComponent implements OnInit {
       error=> this.handleError(error),
       ()=> this.searching=false
     )
+    
 
+  }
+
+  save(query) {
+    this.searching=true;
+    return this.imgService.getImage(query).subscribe(
+      data => this.handleSuccess(data),
+      error=> this.handleError(error),
+      ()=> this.searching=false
+    )
+    }
+
+    scroll(el: HTMLElement) {
+      el.scrollIntoView();
   }
 
 }

@@ -8,6 +8,7 @@ import { ImageListComponent } from './image-list/image-list.component';
 import {ImageService } from './image.service';
 import { FormsModule } from '@angular/forms'; 
 
+
 @NgModule({
   declarations: [
     AppComponent,

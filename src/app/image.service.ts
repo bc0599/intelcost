@@ -16,19 +16,18 @@ export class ImageService {
   private API_URL: string= environment.PIXABAY_API_URL;
   private URL: string=this.API_URL + this.API_KEY + '&q=';
   private CURL: string =this.API_URL + this.API_KEY + '&category=';
-  private perPage: string= "&per_page=10";
 
   constructor(private _http: HttpClient ) { }
 
   getImage(query){
     
-    return this._http.get(this.URL + query + this.perPage).pipe(map( res =>  this.res  = res )) ;
+    return this._http.get(this.URL + query).pipe(map( res =>  this.res  = res )) ;
 
   }
 
   getImageByCategory(query){
     
-    return this._http.get(this.CURL + query + this.perPage).pipe(map( res =>  this.res  = res )) ;
+    return this._http.get(this.CURL + query).pipe(map( res =>  this.res  = res )) ;
 
   }
 }

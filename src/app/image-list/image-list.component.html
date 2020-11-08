@@ -17,13 +17,13 @@
         <fieldset>
           <legend style = "color: rgb(233, 25, 181);">What are you looking for?</legend>
           <div class="inner-form">
-            <div class="input-field">
+            <div id="target" class="input-field">
               <button class="btn-search" (click)="searchImages(query)" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                 </svg>
               </button>
-              <input id="search" type="text" name="input" maxlength="100" [(ngModel)]="query" placeholder="Search for Images" style="background-color: #4158D0;
+              <input id="search"  (keydown.enter)="save(query)" type="text" name="input" maxlength="100" [(ngModel)]="query" placeholder="Search for Images" style="background-color: #4158D0;
               background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);"/>
             </div>
           </div>
@@ -43,28 +43,20 @@
 
   <p *ngIf="searching"> Please wait for a moment...</p>
 
-<div *ngFor="let image of images" class=image-container>
-    <img src="{{image.webformatURL}}" alt="">
-    <p>Tags: {{image.tag}}</p>
-    <p>Commets: {{image.comments}}</p>
-    <p>Likes: {{image.likes}}</p>
-</div>
-
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+  <div class="container"> 
+    <div class="row"> 
+        <div *ngFor="let image of images" class="col-lg-6 mb-4 card shadow-lg p-3 mb-5 bg-white rounded"> 
+            <img class="card-img-top" src="{{image.webformatURL}}" width = "300" height = "300" alt="Card image cap">
+            <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li style = "font-family: 'Helvetica', sans-serif;" class="list-group-item">{{image.tags}}</li>
+                <li  style = "font-family: 'Helvetica', sans-serif;" class="list-group-item">{{image.comments}} comments</li>
+                <li style = "font-family: 'Helvetica', sans-serif;" class="list-group-item"> {{image.likes}} likes</li>
+            </ul>
+            </div>
+        </div>
+        </div>
+    
   </div>
 
 </html>
